@@ -32,7 +32,7 @@ body:has(#theme_switch:checked) {
   
   
   background-color: var(--theme-primary-color);
-  padding: 5px;
+  padding: 2px;
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -44,15 +44,15 @@ body:has(#theme_switch:checked) {
 }
 
 .switch_btn img {
-  width:25px;
-  height:25px;
+  width:18px;
+  height:18px;
 }
 
 .switch_btn .circle {
   position: absolute;
   left: 0px;
-  width: 30px;
-  height: 30px;
+  width: 22px;
+  height: 22px;
   background-color: var(--theme-secondary-color);
   border-radius: 50%;
   transition: left 0.3s ease-in;
@@ -66,12 +66,16 @@ body:has(#theme_switch:checked) {
   top: 0;
   z-index: 10;
   cursor: pointer;
-  appearance: none;
+  display: none;
 }
 
 .virtual_btn:checked + .circle {
-  left: 36px;
+  left: 27px;
 }
 
 
 /* ___________________________________________________________ */
+
+.select-none {
+  user-select: none;
+}

@@ -1,11 +1,19 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Header from '../../Pages/Shared/Header/Header';
 import Footer from '../../Pages/Shared/Footer/Footer';
+import ToasterProvider from '../../components/Toastprovider/ToastProvider';
 
 export const ThemeDarkLightContext = createContext();
 const Main = () => {
     const [theme, setTheme] = useState(null);
+
+    const location = useLocation();
+    const noHeaderFooterArray = ['/login', '/sign-up'];
+    const noHeadFoot = noHeaderFooterArray.some((str) =>
+        str.toLowerCase() === location.pathname.toLowerCase()
+    );
+
 
 
     useEffect(() => {
@@ -35,13 +43,13 @@ const Main = () => {
     return (
         <ThemeDarkLightContext.Provider value={{ theme, setTheme }}>
             <>
-                <Header />
-
+                {noHeadFoot || <Header />}
                 <main>
                     <Outlet />
                 </main>
-                <Footer />
+                {noHeadFoot || <Footer />}
             </>
+            <ToasterProvider />
         </ThemeDarkLightContext.Provider>
     );
 };
