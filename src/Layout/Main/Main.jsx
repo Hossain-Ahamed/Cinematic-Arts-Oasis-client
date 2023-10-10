@@ -9,7 +9,7 @@ const Main = () => {
     const [theme, setTheme] = useState(null);
 
     const location = useLocation();
-    const noHeaderFooterArray = ['/login', '/sign-up'];
+    const noHeaderFooterArray = ['/login', '/sign-up', '/forget-password'];
     const noHeadFoot = noHeaderFooterArray.some((str) =>
         str.toLowerCase() === location.pathname.toLowerCase()
     );

@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut, updateProfile, FacebookAuthProvider, GithubAuthProvider } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut, updateProfile, FacebookAuthProvider, GithubAuthProvider, sendPasswordResetEmail } from "firebase/auth";
 
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -62,6 +62,10 @@ const AuthProvider = ({ children }) => {
         })
     }
 
+    const providerPasswordReset = (email)=>{
+        return sendPasswordResetEmail(auth, email);
+    }
+
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
@@ -70,10 +74,10 @@ const AuthProvider = ({ children }) => {
 
             if (currentUser) {
                 // const user
-                axios.post(`${import.meta.env.VITE_SERVER_ADDRESS}/jwt`, { email: currentUser?.email }, { withCredentials: true })
+                axios.post(`${import.meta.env.VITE_serverAddress}/jwt`, { email: currentUser?.email }, { withCredentials: true })
                     .then(data => {
                         console.log("Token :  ", data.data.token);
-                        localStorage.setItem('access-token', data.data.token);
+                        
                         Cookies.set('access-token', data.data.token, { expires: 7 });
                         setLoading(false);
                     })
@@ -106,6 +110,7 @@ const AuthProvider = ({ children }) => {
         provideSignInWithGitHub,
         provideSignInWithFaceBook,
         providerUpdateuserProfile,
+        providerPasswordReset,
         provideSignOut,
 
     }

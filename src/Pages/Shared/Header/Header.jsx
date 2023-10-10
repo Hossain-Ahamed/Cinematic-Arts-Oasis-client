@@ -1,13 +1,16 @@
 import React from 'react';
 import ThemeButton from '../../../components/Theme/ThemeButton';
-import logoWBg from '../../../assets/images/icon/logo png.png'
+import logoWBg from '../../../assets/images/icon//logo_noBG.png'
 import { Link, NavLink } from 'react-router-dom';
 import useAuthProvider from '../../../Hooks/useAuthProvider';
+import useProfile from '../../../Hooks/useProfile';
 
 
 const Header = () => {
 
     const { user, provideSignOut } = useAuthProvider();
+
+    const {role} = useProfile();
 
     const nav = [
         {
@@ -27,7 +30,7 @@ const Header = () => {
         },
         {
             name: "Dashboard",
-            url: "/dashboard"
+            url: role === "admin" ? "/dashboard/admin" : role === "instructor" ? "/dashboard/instructor" : "dashboard/student"
 
         },
 
@@ -40,20 +43,20 @@ const Header = () => {
 
     return (
 
-        <header className="bg-gray-200/50 border-gray-200 dark:bg-gray-900">
-            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <header className="bg-gray-200/50 border-gray-200 dark:bg-gray-900 select-none">
+            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3">
 
 
                 <Link to="/" className="flex items-center">
-                    <img src={logoWBg} className="h-14 w-44 mr-3 " alt="Logo" />
-
+                    <img src={logoWBg} className="h-[40px] w-[40px] mr-3 " alt="Logo" />
+                    <span className="hidden md:block self-center text-2xl font-semibold whitespace-nowrap text-red-500 dark:text-white">Creative Arts Oasis</span>
                 </Link>
 
-                <nav className='flex justify-end  items-center gap-3'>
+                <nav className='flex justify-end  items-center gap-3 pt-3'>
 
                     <div className="hidden w-full md:block md:w-auto" id="navbar-default">
 
-                        <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border  rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                        <ul className="font-medium flex flex-col justify-center items-center p-4 md:p-0 mt-4 border  rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
 
                             {
                                 nav.map((item, _idx) =>
@@ -79,23 +82,31 @@ const Header = () => {
 
                             {
                                 user ?
-                                    <li  >
-
-                                        <div className="dropdown dropdown-end">
-                                            <label tabIndex={0} className={[...NavClass]}>Profile</label>
-                                            <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                                <li className={[...NavClass]}><NavLink>See profile</NavLink></li>
-                                                <li onClick={provideSignOut}>Log Out</li>
-                                            </ul>
-                                        </div>
 
 
-                                    </li>
+                                    <div className="dropdown dropdown-end hover:cursor-pointer">
+                                        <label tabIndex={0} className={[...NavClass]}>Profile</label>
+                                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                                            <li ><NavLink to='/profile' className=' mb-3 hover:cursor-pointer'>See profile</NavLink></li>
+                                            <li ><a onClick={provideSignOut} className=' mb-3 hover:cursor-pointer'>Log Out</a></li>
+                                        </ul>
+                                    </div>
+
+
+
 
                                     :
-                                    <li >
-                                        <NavLink to="/login" className="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800">JOIN NOW</NavLink>
-                                    </li>
+
+                                    <NavLink
+                                        to="/login"
+                                        className=" 
+                                         text-white font-medium text-xl
+                                         w-full sm:w-auto px-5 py-3
+                                         rounded-lg   text-center
+                                         bg-red-500 hover:bg-red-600
+                                          focus:ring-4 focus:outline-none focus:ring-red-300  
+                                           dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800">JOIN NOW</NavLink>
+
 
                             }
 
@@ -140,7 +151,7 @@ const Header = () => {
                                         </li>
                                     )
                                 }
-                                <li >
+                              
                                     {
                                         user ?
                                             <>
@@ -168,7 +179,7 @@ const Header = () => {
                                             :
                                             <NavLink to="/login" className={[...NavClass]}>Join Now</NavLink>
                                     }
-                                </li>
+                              
 
 
 
