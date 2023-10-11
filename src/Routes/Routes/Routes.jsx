@@ -17,6 +17,8 @@ import AdminHome from "../../Pages/Dashboard/Admin/AdminHome/AdminHome";
 import StudentHome from "../../Pages/Dashboard/Student/StudentHome/StudentHome";
 import Classes from "../../Pages/Main_Layout_Pages/Classes/Classes";
 import Forgetpassword from "../../Pages/Main_Layout_Pages/LoginSystem/OtherSignInMethod/Forgetpassword";
+import Profile from "../../Pages/Main_Layout_Pages/Profile/Profile";
+import Instructors from "../../Pages/Main_Layout_Pages/Instructor/Instructor";
 
 
 export const router = createBrowserRouter([
@@ -44,14 +46,24 @@ export const router = createBrowserRouter([
                 path: "/update-profile",
                 element: <PrivateRoute> <UpdateProfile /></PrivateRoute>
             },
-            {
-                path: "/profile",
-                element: <PrivateRoute> <UpdateProfile /></PrivateRoute>
-            },
+           
             {
                 path: "/classes",
                 element: <Classes />
             },
+            {
+                path: "/classes/:classID",
+                element: <Classes />
+            },
+            {
+                path: "/instructors",
+                element: <Instructors />
+            },
+            {
+                path: "/instructors/:instrucotrID",
+                element: <Instructors />
+            },
+         
          
         ]
     },
@@ -59,19 +71,31 @@ export const router = createBrowserRouter([
         path: "/dashboard",
         element: <PrivateRoute><NoProfileWarning><Dashboard /></NoProfileWarning></PrivateRoute>,
         children: [
+            {
+                path: "profile",
+                element: <Profile />
+            },
             // admin 
             {
                 path: "admin",
-                element: <ProtectedByRole allowedRoles={["admin"]}><AdminHome/></ProtectedByRole>
+                element: <ProtectedByRole allowedRoles={["Admin"]}><AdminHome/></ProtectedByRole>
             },
 
 
             // student 
             {
                 path: "student",
-                element: <ProtectedByRole allowedRoles={["student"]}><StudentHome/></ProtectedByRole>
+                element: <ProtectedByRole allowedRoles={["Student"]}><StudentHome/></ProtectedByRole>
+            },
+
+
+
+            // instructor 
+            {
+                path: "instructor",
+                element: <ProtectedByRole allowedRoles={["Instructor"]}><StudentHome/></ProtectedByRole>
             },
 
         ]
     },
-]);
+])

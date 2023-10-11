@@ -20,7 +20,7 @@ const Header = () => {
         },
         {
             name: "Instructor",
-            url: "/instructor"
+            url: "/instructors"
 
         },
         {
@@ -30,7 +30,7 @@ const Header = () => {
         },
         {
             name: "Dashboard",
-            url: role === "admin" ? "/dashboard/admin" : role === "instructor" ? "/dashboard/instructor" : "dashboard/student"
+            url: role === "Admin" ? "/dashboard/admin" : role === "Instructor" ? "/dashboard/instructor" : "dashboard/student"
 
         },
 
@@ -84,10 +84,10 @@ const Header = () => {
                                 user ?
 
 
-                                    <div className="dropdown dropdown-end hover:cursor-pointer">
-                                        <label tabIndex={0} className={[...NavClass]}>Profile</label>
-                                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                            <li ><NavLink to='/profile' className=' mb-3 hover:cursor-pointer'>See profile</NavLink></li>
+                                    <div className="dropdown dropdown-end ">
+                                        <label tabIndex={0} className={[...NavClass,' hover:cursor-pointer ']}>Profile</label>
+                                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow  bg-gray-100 dark:bg-gray-500 rounded-box w-52">
+                                            <li ><NavLink to='/dashboard/profile' className=' mb-3 hover:cursor-pointer text-black dark:text-white'>See profile</NavLink></li>
                                             <li ><a onClick={provideSignOut} className=' mb-3 hover:cursor-pointer'>Log Out</a></li>
                                         </ul>
                                     </div>
@@ -100,9 +100,9 @@ const Header = () => {
                                     <NavLink
                                         to="/login"
                                         className=" 
-                                         text-white font-medium text-xl
-                                         w-full sm:w-auto px-5 py-3
-                                         rounded-lg   text-center
+                                         text-white font-medium text-md
+                                         w-full sm:w-auto px-3 py-1.5
+                                         rounded   text-center
                                          bg-red-500 hover:bg-red-600
                                           focus:ring-4 focus:outline-none focus:ring-red-300  
                                            dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800">JOIN NOW</NavLink>

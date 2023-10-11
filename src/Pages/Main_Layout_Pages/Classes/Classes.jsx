@@ -32,6 +32,8 @@ const Classes = () => {
           Right-click (Hold) or Double-click me
         </div>
         <div>{log}</div>
+
+        classes
       </div>
     );
 };

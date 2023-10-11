@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import { ThemeDarkLightContext } from '../Layout/Main/Main';
+import { ThemeDarkLightContext } from '../Contexts/ThemeProvider/ThemeProvider';
+
 
 const useTheme = () => {
     const theme = useContext(ThemeDarkLightContext);

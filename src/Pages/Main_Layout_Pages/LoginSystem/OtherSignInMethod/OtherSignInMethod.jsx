@@ -54,11 +54,11 @@ const OtherSignInMethod = () => {
     }
     return (
         <div className='mt-3'>
-            <button onClick={handleGoogleLogin} className="w-full px-5 py-2 text-xl font-semibold flex justify-center items-center gap-3 border border-gray-500/50 rounded-2xl ">
+            <button onClick={handleGoogleLogin} className="w-full px-5 py-1.5 text-lg font-semibold flex justify-center items-center gap-3 border border-gray-500/50 rounded-2xl ">
                 <img src={google} alt="Google" /><span>Sign in with Google</span>
             </button>
-            <button onClick={handleGitHubLogin} className="mt-2 w-full px-5 py-2 text-xl font-semibold bg-gray-900 text-white flex justify-center items-center gap-3 border border-gray-500/50 rounded-2xl ">
-                <BsGithub className='text-2xl' /><span>Sign in with Github</span>
+            <button onClick={handleGitHubLogin} className="mt-2 w-full px-5 py-1.5 text-lg font-semibold bg-gray-900 text-white flex justify-center items-center gap-3 border border-gray-500/50 rounded-2xl ">
+                <BsGithub className='text-xl' /><span>Sign in with Github</span>
             </button>
 
         </div>
