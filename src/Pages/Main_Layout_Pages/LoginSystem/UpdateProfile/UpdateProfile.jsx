@@ -92,7 +92,7 @@ const UpdateProfile = () => {
                     `Your Profile has been Updated`,
                     'success'
                 )
-                navigate('/profile')
+                navigate('/dashboard/profile')
 
             }).catch(e => {
                 // console.log(e);
@@ -166,7 +166,7 @@ const UpdateProfile = () => {
                         <input type="text"  {...register("LastName", {
                             required: "*Last Name required",
                         })}
-                            defaultValue={profile?.name ? profile?.name.split(" ").slice(1) : ""} id="last_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Doe" />
+                            defaultValue={profile?.name ? profile?.name.split(" ").slice(1).join(" ") : ""} id="last_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Doe" />
                         {errors.LastName && (
                             <p className="p-1 text-xs text-red-600">{errors.LastName.message}</p>
                         )}
