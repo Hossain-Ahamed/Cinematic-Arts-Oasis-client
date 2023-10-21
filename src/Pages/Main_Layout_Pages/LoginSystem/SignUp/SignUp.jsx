@@ -64,23 +64,9 @@ const SignUp = () => {
         provideCreateUserWithEmailAndPassword(email, password)
             .then(result => {
 
-                const user = result.user
-                const saveduser = { 
-                    email: user.email,
-                    firebase_UID: user?.uid,
-                }
                
-                axiosSecure.post('/sign-in-upload-data',  saveduser )
-                    .then(data => {
-                        profileRefetch();
-                        <Navigate to='/update-profile' state={{ from: from }} replace></Navigate>
-                    }).catch(e => {
-                        console.error(e);
-                        provideSignOut()
-                            .then(data => { <Navigate to='/login' replace></Navigate> })
-                            .catch(error => console.error(error))
-
-                    })
+               <Navigate to='/update-profile' state={{ from: from }} replace></Navigate>
+        
 
             })
             .catch(e => { setLoading(false)})
@@ -109,7 +95,7 @@ const SignUp = () => {
                                 <div className="input-form-container">
                                     <label htmlFor="email">Email</label>
                                     <div className="input-group">
-                                        <input type="email" id="email" {...register("email", { required: true })} title="Please Enter Valid Email Id" />
+                                        <input type="email"  className='dark:bg-slate-800' id="email" {...register("email", { required: true })} title="Please Enter Valid Email Id" />
 
                                     </div>
                                     {errors.email?.type === "required" && (
@@ -131,6 +117,7 @@ const SignUp = () => {
                                                 message: "* minimum length is 6",
                                             }
                                         })}
+                                        className='dark:bg-slate-800'
                                             onChange={(e) => setPass(e.target.value)} />
 
                                     </div>
@@ -143,6 +130,7 @@ const SignUp = () => {
                                     <label htmlFor="confirmPass">Confirm Password</label>
                                     <div className="input-group relative">
                                         <input
+                                         className='dark:bg-slate-800'
                                             type={showPass ? 'text' : 'password'}
                                             id="confirmPass" {...register("Confrimpassword", { required: true })}
                                             onChange={(e) => setCPass(e.target.value)} />
@@ -191,8 +179,8 @@ const SignUp = () => {
 
 
                                 <div className="input-form-container mt-3">
-                                    <p className="paragraph text-lg">
-                                        Already have an account? <Link to="/login" className='hover:underline hover:text-blue-500 hover:font-semibold'>Sign In</Link>
+                                    <p className="paragraph text-lg dark:text-white relative ">
+                                        Already have an account? <Link to="/login" className='absolute px-2 hover:underline hover:text-blue-500 hover:font-semibold'>Sign In</Link>
                                     </p>
                                 </div>
                             </form>

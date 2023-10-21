@@ -92,7 +92,7 @@ const UpdateProfile = () => {
                     `Your Profile has been Updated`,
                     'success'
                 )
-                navigate('/dashboard/profile')
+                navigate('/')
 
             }).catch(e => {
                 // console.log(e);

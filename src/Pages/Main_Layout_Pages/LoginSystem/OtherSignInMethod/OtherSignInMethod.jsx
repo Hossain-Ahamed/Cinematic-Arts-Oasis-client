@@ -34,22 +34,22 @@ const OtherSignInMethod = () => {
 
     const postSignInFunctions = (result) => {
         profileRefetch();
-        const saveduser = {
-            name: result?.displayName,
-            email: result.email,
-            photoURL: result?.photoURL,
-            phone: result?.phoneNumber,
-            firebase_UID: result?.uid,
+        // const saveduser = {
+        //     name: result?.displayName,
+        //     email: result.email,
+        //     photoURL: result?.photoURL,
+        //     phone: result?.phoneNumber,
+        //     firebase_UID: result?.uid,
 
 
-        }
+        // }
 
 
 
-        axiosSecure.post('/sign-in-upload-data', saveduser)
-            .then(data => {
-                navigate(from, { replace: true });
-            }).catch(e => console.error(e))
+        // axiosSecure.post('/sign-in-upload-data', saveduser)
+        //     .then(data => {
+        //         navigate(from, { replace: true });
+        //     }).catch(e => console.error(e))
 
     }
     return (

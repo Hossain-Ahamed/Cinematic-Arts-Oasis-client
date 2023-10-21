@@ -50,24 +50,25 @@ const Login = () => {
         }).catch(e => {setLoading(false) })
     }
     return (
+     
         <section id="signin auth" className='mt-8 md:mt-8 select-none html body'>
             <SetTitle title="Login" />
             <div className="container">
                 <div className="signin-container ">
-                    <div className="signin-form justify-center">
+                    <div className="signin-form justify-center pl-1 lg:pl-8 ">
                         <a href="/" className="logo p-0">
                             <img src={logoWOBG} alt="Logo" className=" h-[80px] w-[320px]" />
                         </a>
-                        <div className="form-container pt-0 mt-0">
+                        <div className="form-container pt-0 mt-0 ">
                             <h1 className="heading pl-2">Log In</h1>
                             <p className="paragraph pl-2 text-lg">
                                 Please fill your detail to access your account.
                             </p>
-                            <form className="signin_form" onSubmit={handleSubmit(onSubmit)}>
+                            <form className="signin_form max-w-md" onSubmit={handleSubmit(onSubmit)}>
                                 <div className="input-form-container">
                                     <label htmlFor="email">Email</label>
-                                    <div className="input-group">
-                                        <input type="email" id="email" {...register("email", { required: true })} title="Please Enter Valid Email Id" />
+                                    <div className="input-group ">
+                                        <input className='dark:bg-slate-800' type="email" id="email" {...register("email", { required: true })} title="Please Enter Valid Email Id" />
 
                                     </div>
                                     {errors.email?.type === "required" && (
@@ -77,7 +78,7 @@ const Login = () => {
                                 <div className="input-form-container ">
                                     <label htmlFor="password">Password</label>
                                     <div className="input-group relative">
-                                        <input type={showPass ? 'text' : 'password'} id="password" {...register("password", { required: true })} />
+                                        <input  className='dark:bg-slate-800' type={showPass ? 'text' : 'password'} id="password" {...register("password", { required: true })} />
                                         <div onClick={() => setShowPass(!showPass)} className='cursor-pointer absolute right-5 top-2'>
                                             {
                                                 showPass ? <BsEyeSlash className='text-2xl' /> : <BsEye className='text-2xl' />
@@ -111,8 +112,8 @@ const Login = () => {
 
 
                                 <div className="input-form-container text-lg">
-                                    <p className="paragraph">
-                                        Don’t have an account? <Link to="/sign-up" className='hover:underline hover:text-blue-500 hover:font-semibold'>Sign up</Link>
+                                    <p className="paragraph relative  dark:text-white">
+                                        Don’t have an account? <Link to="/sign-up" className='hover:underline absolute hover:text-blue-500 hover:font-semibold'>Sign up</Link>
                                     </p>
                                 </div>
                             </form>

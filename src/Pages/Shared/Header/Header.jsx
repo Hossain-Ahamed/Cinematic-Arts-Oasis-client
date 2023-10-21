@@ -10,7 +10,7 @@ const Header = () => {
 
     const { user, provideSignOut } = useAuthProvider();
 
-    const {role} = useProfile();
+    const { role } = useProfile();
 
     const nav = [
         {
@@ -30,14 +30,15 @@ const Header = () => {
         },
         {
             name: "Dashboard",
-            url: role === "Admin" ? "/dashboard/admin" : role === "Instructor" ? "/dashboard/instructor" : "dashboard/student"
+            // url: role === "Admin" ? "/dashboard/admin" : role === "Instructor" ? "/dashboard/instructor" : "dashboard/student"
+            url: "/dashboard"
 
         },
 
     ]
 
 
-    const NavClass = ["block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent  "];
+    const NavClass = ["block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700  md:p-0 dark:text-white md:dark:hover:text-red-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent  "];
 
 
 
@@ -65,7 +66,7 @@ const Header = () => {
                                             to={item?.url}
                                             className={({ isActive, isPending }) =>
                                                 isActive
-                                                    ? [...NavClass, "text-red-500"].join('')
+                                                    ? [...NavClass, "text-red-500 darK:text-red-500"].join('')
                                                     : [...NavClass]
                                             }
 
@@ -85,8 +86,8 @@ const Header = () => {
 
 
                                     <div className="dropdown dropdown-end ">
-                                        <label tabIndex={0} className={[...NavClass,' hover:cursor-pointer ']}>Profile</label>
-                                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow  bg-gray-100 dark:bg-gray-500 rounded-box w-52">
+                                        <label tabIndex={0} className={[...NavClass, ' hover:cursor-pointer ']}>Profile</label>
+                                        <ul tabIndex={0} className="dropdown-content z-[1000] menu p-2 shadow  bg-gray-100 dark:bg-gray-500 rounded-box w-52">
                                             <li ><NavLink to='/dashboard/profile' className=' mb-3 hover:cursor-pointer text-black dark:text-white'>See profile</NavLink></li>
                                             <li ><a onClick={provideSignOut} className=' mb-3 hover:cursor-pointer'>Log Out</a></li>
                                         </ul>
@@ -117,23 +118,36 @@ const Header = () => {
 
 
                     <div data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center text-xl p-2 w-16 h-10 justify-center  text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 relative" aria-controls="navbar-default" aria-expanded="false">
-                        <label htmlFor='top-nav-collapsable-menu' className='peer-checked:bg-orange-400'>
+
+                        <input type="checkbox" id="top-nav-collapsable-menu" className='peer top-nav-collapsable-menu' hidden />
+
+
+{/* open menu  */}
+                        <label htmlFor='top-nav-collapsable-menu' className=' block peer-checked:hidden z-[10000] transform ease-out'>
+
                             <span className="sr-only">Open main menu</span>
 
                             <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
                             </svg>
 
+                        </label>
+
+                        {/* close menuy  */}
+                        <label htmlFor='top-nav-collapsable-menu' className=' hidden peer-checked:block z-[10000] k'>
+                            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 2L19 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                                <path d="M2 19L19 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                            </svg>
 
                         </label>
-                        <input type="checkbox" id="top-nav-collapsable-menu" className='peer top-nav-collapsable-menu' hidden />
 
 
 
                         {/* mobile nav  */}
-                        <label className='absolute top-full right-3 hidden peer-checked:block'>
+                        <label className='absolute top-full right-3 hidden peer-checked:block z-[10000]'>
 
-                            <ul className="font-medium flex flex-col p-2 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-100 border-gray-700/50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                            <ul className="font-medium flex flex-col p-2 md:p-0 mt-4 dark:border  rounded-lg bg-gray-100 border-gray-700/50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                                 {
                                     nav.map((item, _idx) =>
                                         <li key={_idx}>
@@ -151,35 +165,35 @@ const Header = () => {
                                         </li>
                                     )
                                 }
-                              
-                                    {
-                                        user ?
-                                            <>
-                                                <NavLink
-                                                    to="/dashboard/profile"
-                                                    className={({ isActive }) =>
-                                                        isActive
-                                                            ? [...NavClass, "text-red-500"].join('')
-                                                            : [...NavClass]
-                                                    }
+
+                                {
+                                    user ?
+                                        <>
+                                            <NavLink
+                                                to="/dashboard/profile"
+                                                className={({ isActive }) =>
+                                                    isActive
+                                                        ? [...NavClass, "text-red-500"].join('')
+                                                        : [...NavClass]
+                                                }
+
+                                            >
+                                                Profile
+                                            </NavLink>
+                                            <li >
+                                                <button
+                                                    className={[...NavClass]}
+                                                    onClick={provideSignOut}
 
                                                 >
-                                                    Profile
-                                                </NavLink>
-                                                <li >
-                                                    <button
-                                                        className={[...NavClass]}
-                                                        onClick={provideSignOut}
+                                                    Sign Out
+                                                </button>
+                                            </li>
+                                        </>
+                                        :
+                                        <NavLink to="/login" className={[...NavClass]}>Join Now</NavLink>
+                                }
 
-                                                    >
-                                                        Sign Out
-                                                    </button>
-                                                </li>
-                                            </>
-                                            :
-                                            <NavLink to="/login" className={[...NavClass]}>Join Now</NavLink>
-                                    }
-                              
 
 
 

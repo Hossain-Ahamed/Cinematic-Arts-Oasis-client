@@ -15,15 +15,15 @@ const Main = () => {
 
     return (
 
-        <>
+        <section className='bg-white dark:bg-slate-800 text-black dark:text-white min-h-screen'>
             {noHeadFoot || <Header />}
-            <main className='relative' >
+            <main className='relative  max-w-[1500px] mx-auto' >
                 <Outlet />
             </main>
             {noHeadFoot || <Footer />}
 
             <ToasterProvider />
-        </>
+        </section>
     );
 };
 

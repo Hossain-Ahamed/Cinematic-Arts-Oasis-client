@@ -73,8 +73,19 @@ const AuthProvider = ({ children }) => {
             console.log('current user cred : ', currentUser);
 
             if (currentUser) {
+
+                const userData = {
+                    name: currentUser?.displayName,
+                    email: currentUser.email,
+                    photoURL: currentUser?.photoURL,
+                    phone: currentUser?.phoneNumber,
+                    firebase_UID: currentUser?.uid,
+        
+        
+                }
+        
                 // const user
-                axios.post(`${import.meta.env.VITE_serverAddress}/jwt`, { email: currentUser?.email }, { withCredentials: true })
+                axios.post(`${import.meta.env.VITE_serverAddress}/jwt`,userData, { withCredentials: true })
                     .then(data => {
                         console.log("Token :  ", data.data.token);
                         
