@@ -3,7 +3,6 @@ import {
 
 } from "react-router-dom";
 import Main from "../../Layout/Main/Main";
-import LoadingPage from "../../Pages/LoadingPage/LoadingPage/LoadingPage";
 import PreventLogIn from "../PreventLogin/PreventLogIn";
 import Login from "../../Pages/Main_Layout_Pages/LoginSystem/Login/Login";
 import SignUp from "../../Pages/Main_Layout_Pages/LoginSystem/SignUp/SignUp";
@@ -15,7 +14,6 @@ import NoProfileWarning from "../NoProfileWarning/NoProfileWarning";
 import ProtectedByRole from "../ProtectedByRole/ProtectedByRole";
 import AdminHome from "../../Pages/Dashboard/Admin/AdminHome/AdminHome";
 import StudentHome from "../../Pages/Dashboard/Student/StudentHome/StudentHome";
-import Classes from "../../Pages/Main_Layout_Pages/Classes/Classes";
 import Forgetpassword from "../../Pages/Main_Layout_Pages/LoginSystem/OtherSignInMethod/Forgetpassword";
 import Profile from "../../Pages/Main_Layout_Pages/Profile/Profile";
 import Instructors from "../../Pages/Main_Layout_Pages/Instructor/Instructor";
@@ -27,6 +25,7 @@ import InstructorHome from "../../Pages/Dashboard/Instructor/InstructorHome/Inst
 import AddClass from "../../Pages/Dashboard/Instructor/AddClass/AddClass";
 import Myclasses from "../../Pages/Dashboard/Instructor/Myclasses/Myclasses";
 import Followers from "../../Pages/Dashboard/Instructor/Followers/Followers";
+import Classes from "../../Pages/Main_Layout_Pages/Classes/Classes";
 
 
 export const router = createBrowserRouter([

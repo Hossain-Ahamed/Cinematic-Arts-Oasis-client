@@ -42,12 +42,11 @@ const AddClass = () => {
             className : data?.className,
             videoURL : data?.videoURL,
             availableSeats: parseInt(data?.availableSeats),
-            CoursePrice : parseFloat(parseFloat(data?.CoursePric
-                ).toFixed(2)),
+            CoursePrice : parseFloat(parseFloat(data?.CoursePrice).toFixed(2)),
             description : data?.description
         }
 
-        console.log(Uploaddata)
+        // console.log(Uploaddata)
 
         if (data?.img.length !== 0) {
             const formData = new FormData();
