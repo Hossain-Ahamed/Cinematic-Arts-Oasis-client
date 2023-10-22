@@ -73,7 +73,7 @@ const SignUp = () => {
 
     }
     return (
-        <section id="signin auth" className='mt-8 select-none transition ease-in-out delay-200 html body'>
+        <section id="signin auth" className='pt-8 select-none transition ease-in-out delay-200 html body'>
             <SetTitle title="Sign Up" />
             <div className="container max-w-5xl mx-auto">
                 <div className="signin-container w-full">

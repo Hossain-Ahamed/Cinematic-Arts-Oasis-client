@@ -2,22 +2,54 @@ import React from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { useQuery } from 'react-query';
 import { LoaderIcon } from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SetTitle from '../../Shared/SetTtitle/SetTitle';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import ClassCard from './ClassCard';
+import useProfile from '../../../Hooks/useProfile';
+import useCart from '../../../Hooks/useCart';
+import Swal from 'sweetalert2';
 
 const Classes = () => {
-
+    const { role, profile } = useProfile();
     const axiosSecure = useAxiosSecure();
     const { refetch, data: dataList = [], isLoading, error } = useQuery({
         queryKey: ['classesAll'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/get-all-classes`);
-            console.log(res.data)
+            // console.log(res.data)
             return res?.data;
         },
     });
+
+
+    const navigate = useNavigate();
+    const { cart, items } = useCart();
+
+    const handleAddToCart = _id => {
+        if (!role) {
+            Swal.fire(
+                'No Profile',
+                'Your must Login .',
+                'warning'
+            )
+
+            navigate("/login", { replace: true })
+        } else {
+
+            if (role !== "Student") {
+                Swal.fire(
+                    'Unauthorized',
+                    'Only student can purchase',
+                    'warning'
+                )
+
+            } else {
+                console.log(_id);
+                console.log(cart, items)
+            }
+        }
+    }
 
     if (error) {
         return <>error in classes</>
@@ -34,11 +66,11 @@ const Classes = () => {
 
 
                 {
-                    dataList.map((data, _idx) => <ClassCard key={_idx} data={data}/>
+                    dataList.map((data, _idx) => <ClassCard key={_idx} data={data} role={role} handleAddToCart={handleAddToCart} />
 
                     )
                 }
-               
+
             </div>
         </>
 
