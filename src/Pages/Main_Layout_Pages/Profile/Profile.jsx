@@ -17,7 +17,7 @@ const Profile = () => {
         <>
             <SetTitle title={`${profile?.displayName}`} />
             <SectionTitle h1=" PROFILE" />
-            <div className='max-w-5xl mx-auto min-h-screen' >
+            <div className=' mx-auto min-h-screen dark:bg-slate-700' >
                 {/* image  */}
 
                 <div className="flex items-center justify-center max-w-[300px] mx-auto relative">

@@ -15,7 +15,7 @@ const RangeBar = (
 ) => {
 
 
-    const numberOfSizeInTableDataArray = ["15", "30", "50", "100", "500"];
+    const numberOfSizeInTableDataArray = ["5","15", "30", "50", "100", "500"];
 
 
     const handletypeOfSizeChange = (e) => {
@@ -60,7 +60,7 @@ const RangeBar = (
                             onChange={handleSearchValueChange}
                             autoComplete="off"
                             name="name"
-                            className="input-field block w-full h-10 p-2 pl-10 text-base rounded-xl bg-light-100"
+                            className="input-field block w-full h-10 p-2 pl-10 text-base rounded-xl bg-gray-100 dark:bg-slate-600 dark:border"
                             placeholder={placeholder}
                         />
                     </form>
@@ -77,7 +77,7 @@ const RangeBar = (
                             name="numberOfSizeInTableData"
                             value={numberOfSizeInTableData.toString()}
                             onChange={handletypeOfSizeChange}
-                            id="numberOfSizeInTableData" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2 cursor-pointer">
+                            id="numberOfSizeInTableData" className=" border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2 cursor-pointer bg-white dark:bg-slate-600 dark:border dark:text-white">
                             <option value="5">5</option>
                             <option value="15">15</option>
                             <option value="30">30</option>

@@ -22,6 +22,11 @@ import Instructors from "../../Pages/Main_Layout_Pages/Instructor/Instructor";
 import ReleaseNote from "../../Pages/ReleaseNote/ReleaseNote";
 import RoleWiseNavigateToDashboardHome from "../RoleWiseNavigate/RoleWiseNavigate";
 import AllUsers from "../../Pages/Dashboard/Admin/Handleusers/AllUsers";
+import UpdateUserByAdmin from "../../Pages/Dashboard/Admin/Handleusers/UpdateUserByAdmin";
+import InstructorHome from "../../Pages/Dashboard/Instructor/InstructorHome/InstructorHome";
+import AddClass from "../../Pages/Dashboard/Instructor/AddClass/AddClass";
+import Myclasses from "../../Pages/Dashboard/Instructor/Myclasses/Myclasses";
+import Followers from "../../Pages/Dashboard/Instructor/Followers/Followers";
 
 
 export const router = createBrowserRouter([
@@ -91,6 +96,10 @@ export const router = createBrowserRouter([
                 path: "all-users",
                 element: <ProtectedByRole allowedRoles={["Admin"]}><AllUsers /></ProtectedByRole>
             },
+            {
+                path: "all-users/update-user-profile",
+                element: <ProtectedByRole allowedRoles={["Admin"]}><UpdateUserByAdmin /></ProtectedByRole>
+            },
 
 
             // student 
@@ -104,7 +113,23 @@ export const router = createBrowserRouter([
             // instructor 
             {
                 path: "instructor",
-                element: <ProtectedByRole allowedRoles={["Instructor"]}><StudentHome /></ProtectedByRole>
+                element: <ProtectedByRole allowedRoles={["Instructor"]}><InstructorHome /></ProtectedByRole>
+            },
+            {
+                path: "add-class",
+                element: <ProtectedByRole allowedRoles={["Instructor"]}><AddClass /></ProtectedByRole>
+            },
+            {
+                path: "my-classes",
+                element: <ProtectedByRole allowedRoles={["Instructor"]}><Myclasses /></ProtectedByRole>
+            },
+            {
+                path: "my-classes/:classID",
+                element: <ProtectedByRole allowedRoles={["Instructor"]}><Myclasses /></ProtectedByRole>
+            },
+            {
+                path: "followers",
+                element: <ProtectedByRole allowedRoles={["Instructor"]}><Followers /></ProtectedByRole>
             },
 
         ]

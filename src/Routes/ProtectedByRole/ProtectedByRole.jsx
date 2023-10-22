@@ -5,6 +5,7 @@ import { Navigate } from 'react-router-dom';
 
 const ProtectedByRole = ({ allowedRoles, children }) => {
     const { role, profileLoading } = useProfile();
+   
 
     if (profileLoading) {
         return <LoadingPage />

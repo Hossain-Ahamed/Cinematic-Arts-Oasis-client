@@ -26,7 +26,7 @@ function Paginator({ currentPage, totalPages, setCurrentPage }) {
                         key={i}
                         onClick={() => onPageChange(i)}
                         className={`${i === currentPage
-                            ? 'bg-blue-500 text-white'
+                            ? 'bg-blue-500 dark:bg-blue-700 text-white'
                             : 'bg-gray-200 text-gray-700'
                             } px-3 py-1 mx-1 rounded-full focus:outline-none`}
                     >
@@ -49,11 +49,11 @@ function Paginator({ currentPage, totalPages, setCurrentPage }) {
     };
 
     return (
-        <div className="flex justify-center mt-2 mb-40 user-select-none cursor-pointer">
+        <div className="flex justify-center mt-10 pb-40 user-select-none cursor-pointer ">
             {currentPage > 1 && (
                 <button
                     onClick={() => onPageChange(currentPage - 1)}
-                    className="bg-blue-500 text-white px-3 py-1 mx-1 rounded-full focus:outline-none"
+                    className="bg-blue-500 dark:bg-blue-700 text-white px-3 py-1 mx-1 rounded-full focus:outline-none"
                 >
                     Previous
                 </button>
@@ -64,7 +64,7 @@ function Paginator({ currentPage, totalPages, setCurrentPage }) {
             {currentPage < totalPages && (
                 <button
                     onClick={() => onPageChange(currentPage + 1)}
-                    className="bg-blue-500 text-white px-3 py-1 mx-1 rounded-full focus:outline-none"
+                    className="bg-blue-500 dark:bg-blue-700 text-white px-3 py-1 mx-1 rounded-full focus:outline-none"
                 >
                     Next
                 </button>
