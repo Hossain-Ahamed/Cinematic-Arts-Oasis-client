@@ -25,7 +25,7 @@ const Classes = () => {
     });
 
 
-    const { addtoCart} = useCart();
+    const { items, addtoCart } = useCart();
 
 
     if (error) {
@@ -44,7 +44,7 @@ const Classes = () => {
 
 
                 {
-                    dataList.map((data, _idx) => <ClassCard key={_idx} data={data} role={role} handleAddToCart={addtoCart} />
+                    dataList.map((data, _idx) => <ClassCard key={_idx} data={data} role={role} handleAddToCart={addtoCart} items={items} />
 
                     )
                 }

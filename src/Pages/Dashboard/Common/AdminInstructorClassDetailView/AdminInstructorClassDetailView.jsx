@@ -25,13 +25,7 @@ const AdminInstructorClassDetailView = () => {
 
 
     if (error) {
-        console.error(error)
-        Swal.fire(
-
-
-            'warning'
-
-        )
+    
         Swal.fire({
             icon: 'error',
             title: `${error?.code} ${error?.response?.status} `,

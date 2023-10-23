@@ -56,9 +56,9 @@ const ManageClass = () => {
         }
         axiosSecure.patch(`/manage-classes/class-list/change-status/${classID}`, data)
             .then(data => {
-                console.log(data.data)
+                // console.log(data.data?.message)
                 refetch();
-                toast.success("Successful");
+                toast.success(data?.data?.message || "Successful");
             })
             .catch(e => console.error(e));
     }
@@ -162,7 +162,7 @@ const ManageClass = () => {
                             </td>
                             <td className="px-6 py-4">
                                 {
-                                    role === "Admin" && data?.status === "Pending" ?
+                                    role === "Admin"  ?
                                         <div>
 
                                             <select
