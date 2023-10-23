@@ -25,33 +25,8 @@ const Classes = () => {
     });
 
 
-    const navigate = useNavigate();
-    const { cart, items } = useCart();
+    const { addtoCart} = useCart();
 
-    const handleAddToCart = _id => {
-        if (!role) {
-            Swal.fire(
-                'No Profile',
-                'Your must Login .',
-                'warning'
-            )
-
-            navigate("/login", { replace: true })
-        } else {
-
-            if (role !== "Student") {
-                Swal.fire(
-                    'Unauthorized',
-                    'Only student can purchase',
-                    'warning'
-                )
-
-            } else {
-                console.log(_id);
-                console.log(cart, items)
-            }
-        }
-    }
 
     if (error) {
         return <>error in classes</>
@@ -69,7 +44,7 @@ const Classes = () => {
 
 
                 {
-                    dataList.map((data, _idx) => <ClassCard key={_idx} data={data} role={role} handleAddToCart={handleAddToCart} />
+                    dataList.map((data, _idx) => <ClassCard key={_idx} data={data} role={role} handleAddToCart={addtoCart} />
 
                     )
                 }

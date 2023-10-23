@@ -29,34 +29,8 @@ const InstructorDetailView = () => {
 
 
     const { role } = useProfile();
-    const { cart, items } = useCart();
-    const navigate = useNavigate();
+    const { addtoCart } = useCart();
 
-
-    const handleAddToCart = _id => {
-        if (!role) {
-            Swal.fire(
-                'No Profile',
-                'Your must Login .',
-                'warning'
-            )
-
-            navigate("/login", { replace: true })
-        } else {
-
-            if (role !== "Student") {
-                Swal.fire(
-                    'Unauthorized',
-                    'Only student can purchase',
-                    'warning'
-                )
-
-            } else {
-                console.log(_id);
-                console.log(cart, items)
-            }
-        }
-    }
 
     if (error) {
 
@@ -92,7 +66,7 @@ const InstructorDetailView = () => {
                     {
                         classInfo && Array.isArray(classInfo) &&
                             classInfo.length > 0 ?
-                            classInfo.map((data, _idx) => <ClassCard key={_idx} data={data} role={role} handleAddToCart={handleAddToCart} />)
+                            classInfo.map((data, _idx) => <ClassCard key={_idx} data={data} role={role} handleAddToCart={addtoCart} />)
                             :
                             <p className='text-xl mt-5 font-semibold text-red-500'>No available class of this Instructor</p>
                     }

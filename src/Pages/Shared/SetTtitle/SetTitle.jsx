@@ -5,7 +5,7 @@ const SetTitle = ({ title }) => {
     return (
         <>
             <Helmet>
-                <title>Cinematic Arts Oasis | {title}</title>
+                <title>{title} | Cinematic Arts Oasis </title>
             </Helmet>
         </>
     );

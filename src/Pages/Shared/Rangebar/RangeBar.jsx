@@ -43,7 +43,7 @@ const RangeBar = (
 
             <div className='px-4 flex justify-between flex-wrap items-center mb-2 border-b '>
 
-                <p aria-label='title' className='text-3xl font-extrabold text-gray-700 '>{pageTitle}</p>
+                <p aria-label='title' className='text-3xl font-extrabold text-gray-700 dark:text-gray-100 '>{pageTitle}</p>
                 <div className="w-full  max-w-[400px] my-3 flex  justify-start md:justify-end ">
                     <form className="w-full  max-w-md relative">
                         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">

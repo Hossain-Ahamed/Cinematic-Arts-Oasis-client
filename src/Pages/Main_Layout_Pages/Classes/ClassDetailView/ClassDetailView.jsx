@@ -10,6 +10,7 @@ import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
 import useProfile from '../../../../Hooks/useProfile';
 import InstructorDetailbar from '../../../Shared/InstructorDetailBar/InstructorDetailBar';
 import ScrollToTop from '../../../../components/ScrollToTop/ScrollToTop';
+import useCart from '../../../../Hooks/useCart';
 
 const ClassDetailView = () => {
 
@@ -26,7 +27,7 @@ const ClassDetailView = () => {
         }
     })
 
-
+    const { addtoCart } = useCart();
 
 
     if (error) {
@@ -96,7 +97,7 @@ const ClassDetailView = () => {
                                 <p className="mb-7 text-sm font-semibold text-gray-500 dark:text-gray-400 leading-none cursor-pointer ">#{classInfo?._id.slice(-6)} </p>
 
                             </div>
-                            <button type="button" className="text-white h-fit bg-[#2557D6] hover:bg-[#2557D6]/90 focus:ring-4 focus:ring-[#2557D6]/50 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 flex justify-around  items-center dark:focus:ring-[#2557D6]/50 mr-2 mb-2">
+                            <button type="button" onClick={()=>{addtoCart(classInfo?._id)}} className="text-white h-fit bg-[#2557D6] hover:bg-[#2557D6]/90 focus:ring-4 focus:ring-[#2557D6]/50 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 flex justify-around  items-center dark:focus:ring-[#2557D6]/50 mr-2 mb-2">
 
                                 <svg className="mr-1 flex-shrink-0 w-5 h-5 text-white transition duration-75 dark:text-white group-hover:text-white dark:group-hover:text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2 2H3.74001C4.82001 2 5.67 2.93 5.58 4L4.75 13.96C4.61 15.59 5.89999 16.99 7.53999 16.99H18.19C19.63 16.99 20.89 15.81 21 14.38L21.54 6.88C21.66 5.22 20.4 3.87 18.73 3.87H5.82001" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />

@@ -23,11 +23,12 @@ import AllUsers from "../../Pages/Dashboard/Admin/Handleusers/AllUsers";
 import UpdateUserByAdmin from "../../Pages/Dashboard/Admin/Handleusers/UpdateUserByAdmin";
 import InstructorHome from "../../Pages/Dashboard/Instructor/InstructorHome/InstructorHome";
 import AddClass from "../../Pages/Dashboard/Instructor/AddClass/AddClass";
-import Myclasses from "../../Pages/Dashboard/Instructor/Myclasses/Myclasses";
 import Followers from "../../Pages/Dashboard/Instructor/Followers/Followers";
 import Classes from "../../Pages/Main_Layout_Pages/Classes/Classes";
 import ClassDetailView from "../../Pages/Main_Layout_Pages/Classes/ClassDetailView/ClassDetailView";
 import InstructorDetailView from "../../Pages/Main_Layout_Pages/Instructor/InstructorDetailView/InstructorDetailView";
+import ManageClass from "../../Pages/Dashboard/Common/ManageClass/ManageClass";
+import AdminInstructorClassDetailView from "../../Pages/Dashboard/Common/AdminInstructorClassDetailView/AdminInstructorClassDetailView";
 
 
 export const router = createBrowserRouter([
@@ -101,6 +102,14 @@ export const router = createBrowserRouter([
                 path: "all-users/update-user-profile",
                 element: <ProtectedByRole allowedRoles={["Admin"]}><UpdateUserByAdmin /></ProtectedByRole>
             },
+            {
+                path: "manage-classes",
+                element: <ProtectedByRole allowedRoles={["Admin"]}><ManageClass /></ProtectedByRole>
+            },
+            {
+                path: "manage-classes/:classID",
+                element: <ProtectedByRole allowedRoles={["Admin"]}><AdminInstructorClassDetailView /></ProtectedByRole>
+            },
 
 
             // student 
@@ -122,16 +131,18 @@ export const router = createBrowserRouter([
             },
             {
                 path: "my-classes",
-                element: <ProtectedByRole allowedRoles={["Instructor"]}><Myclasses /></ProtectedByRole>
+                element: <ProtectedByRole allowedRoles={["Instructor"]}><ManageClass /></ProtectedByRole>
             },
             {
                 path: "my-classes/:classID",
-                element: <ProtectedByRole allowedRoles={["Instructor"]}><Myclasses /></ProtectedByRole>
+                element: <ProtectedByRole allowedRoles={["Instructor"]}><AdminInstructorClassDetailView /></ProtectedByRole>
             },
             {
                 path: "followers",
                 element: <ProtectedByRole allowedRoles={["Instructor"]}><Followers /></ProtectedByRole>
             },
+
+            //common
 
         ]
     },
