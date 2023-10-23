@@ -26,6 +26,8 @@ import AddClass from "../../Pages/Dashboard/Instructor/AddClass/AddClass";
 import Myclasses from "../../Pages/Dashboard/Instructor/Myclasses/Myclasses";
 import Followers from "../../Pages/Dashboard/Instructor/Followers/Followers";
 import Classes from "../../Pages/Main_Layout_Pages/Classes/Classes";
+import ClassDetailView from "../../Pages/Main_Layout_Pages/Classes/ClassDetailView/ClassDetailView";
+import InstructorDetailView from "../../Pages/Main_Layout_Pages/Instructor/InstructorDetailView/InstructorDetailView";
 
 
 export const router = createBrowserRouter([
@@ -60,15 +62,15 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/classes/:classID",
-                element: <Classes />
+                element: <ClassDetailView />
             },
             {
                 path: "/instructors",
                 element: <Instructors />
             },
             {
-                path: "/instructors/:instrucotrID",
-                element: <Instructors />
+                path: "/instructors/:insID",
+                element: <InstructorDetailView />
             },
 
 

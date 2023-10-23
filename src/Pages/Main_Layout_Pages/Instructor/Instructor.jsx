@@ -4,13 +4,14 @@ import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import toast, { LoaderIcon } from 'react-hot-toast';
 import SetTitle from '../../Shared/SetTtitle/SetTitle';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import Instructorcard from './Instructorcard';
+import LoadingPage from '../../LoadingPage/LoadingPage/LoadingPage';
+import ScrollToTop from '../../../components/ScrollToTop/ScrollToTop';
 
 const Instructors = () => {
-    const { role, profile,profileRefetch } = useProfile();
+    const { role, profile, profileRefetch } = useProfile();
     const axiosSecure = useAxiosSecure();
     const { refetch, data: dataList = [], isLoading, error } = useQuery({
         queryKey: ['allinstructor'],
@@ -23,10 +24,10 @@ const Instructors = () => {
 
 
     const navigate = useNavigate();
-    
 
 
-    const handleFollow = (insID,type) => {
+
+    const handleFollow = (insID, type) => {
         if (!role) {
             Swal.fire(
                 'No Profile',
@@ -47,19 +48,19 @@ const Instructors = () => {
             } else {
 
                 const data = {
-                    insID : insID,
-                    type : type,
-                    _id : profile?._id
+                    insID: insID,
+                    type: type,
+                    _id: profile?._id
                 }
 
-              axiosSecure.patch('/followings',data)
-              .then(data=>{
-                profileRefetch();
-                // toast.success()
-              })
-              .catch(e=>console.error(e))
-                
-               
+                axiosSecure.patch('/followings', data)
+                    .then(data => {
+                        profileRefetch();
+                        // toast.success()
+                    })
+                    .catch(e => console.error(e))
+
+
             }
         }
     }
@@ -68,18 +69,19 @@ const Instructors = () => {
         return <>error in classes</>
     }
     if (isLoading) {
-        return <LoaderIcon />
+        return <LoadingPage />
     }
 
     return (
         <>
+            <ScrollToTop />
             <SetTitle title="All Instructor | Cinematic" />
             <SectionTitle h1="All Instructor" />
             <div className='mt-5 flex justify-center items-center flex-wrap gap-5'>
 
 
                 {
-                    dataList.map((data, _idx) => <Instructorcard key={_idx} data={data} role={role} handleFollow={handleFollow} profile={profile}/>
+                    dataList.map((data, _idx) => <Instructorcard key={_idx} data={data} role={role} handleFollow={handleFollow} profile={profile} />
 
                     )
                 }

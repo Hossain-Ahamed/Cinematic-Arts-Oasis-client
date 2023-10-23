@@ -41,7 +41,7 @@ const ClassCard = ({ data, role, handleAddToCart }) => {
 
                 <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white" aria-label='course name' title='course name'>{data?.className}</h5>
                 <div className="flex items-center mt-2.5 mb-5">
-                    <span aria-label='isntructor name' title='instructor name' className=' text-sm '>By @ <span className='hover:underline hover:cursor-pointer'>{data?.name}</span></span>
+                    <span aria-label='isntructor name' title='instructor name' className=' text-sm  '>By <span className='text-gray-600 hover:cursor-pointer font-semibold'>@{data?.name}</span></span>
                     <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">Available Seat:{data?.availableSeats}</span>
                 </div>
                 <div className="flex items-center justify-between">
@@ -49,13 +49,13 @@ const ClassCard = ({ data, role, handleAddToCart }) => {
                     <div className='flex justify-between items-center flex-wrap gap-3'>
                         <button
                             disabled={data?.availableSeats === 0}
-                            title={role !== "Student" ? "Only student can Purchase" : "add to cart"}
+                            title={role !== "Student" ? "Only student can Purchase" : data?.availableSeats === 0 ? "No seat Availabale " : "Add to cart"}
                             onClick={() => { handleAddToCart(data?._id) }}
                             className={`text-white rounded-lg text-sm px-5 py-2.5 text-center font-medium ${data?.availableSeats === 0 ? "bg-red-500 disabled:cursor-not-allowed" : "bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300   dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"}`}>
                             Add to Cart
 
                         </button>
-                        <Link to={`${data?._id}`} className="inline-flex justify-center items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <Link to={`/classes/${data?._id}`} className="inline-flex justify-center items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                            <p> Read more</p>
                            <p>
 

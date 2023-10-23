@@ -9,6 +9,8 @@ import ClassCard from './ClassCard';
 import useProfile from '../../../Hooks/useProfile';
 import useCart from '../../../Hooks/useCart';
 import Swal from 'sweetalert2';
+import LoadingPage from '../../LoadingPage/LoadingPage/LoadingPage';
+import ScrollToTop from '../../../components/ScrollToTop/ScrollToTop';
 
 const Classes = () => {
     const { role, profile } = useProfile();
@@ -55,11 +57,12 @@ const Classes = () => {
         return <>error in classes</>
     }
     if (isLoading) {
-        return <LoaderIcon />
+        return <LoadingPage />
     }
 
     return (
         <>
+            <ScrollToTop />
             <SetTitle title="All Classes | Cinematic" />
             <SectionTitle h1="All Classes" />
             <div className='mt-5 flex justify-center items-center flex-wrap gap-5'>
