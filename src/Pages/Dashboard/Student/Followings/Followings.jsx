@@ -14,7 +14,7 @@ const Followings = () => {
     const { role, profile, profileRefetch } = useProfile();
     const axiosSecure = useAxiosSecure();
     const { refetch, data: dataList = [], isLoading, error } = useQuery({
-        queryKey: ['allinstructor', profile],
+        queryKey: ['allinstructor'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/get-all-followed-instructors`);
             // console.log(res.data)
@@ -48,6 +48,7 @@ const Followings = () => {
             axiosSecure.patch('/followings', data)
                 .then(data => {
                     profileRefetch();
+                    refetch();
                     // toast.success()
                 })
                 .catch(e => console.error(e))

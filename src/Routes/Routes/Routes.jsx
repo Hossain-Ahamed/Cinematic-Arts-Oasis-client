@@ -32,6 +32,7 @@ import AdminInstructorClassDetailView from "../../Pages/Dashboard/Common/AdminIn
 import Cart from "../../Pages/Dashboard/Student/Cart/Cart";
 import Payment from "../../Pages/Dashboard/Student/Payment/Payment";
 import Followings from "../../Pages/Dashboard/Student/Followings/Followings";
+import MyPaymentHistory from "../../Pages/Dashboard/Student/MyPaymentHistory/MyPaymentHistory";
 
 
 export const router = createBrowserRouter([
@@ -135,6 +136,10 @@ export const router = createBrowserRouter([
             {
                 path: "following",
                 element: <ProtectedByRole allowedRoles={["Student"]}><Followings /></ProtectedByRole>
+            },
+            {
+                path: "my-payment-history",
+                element: <ProtectedByRole allowedRoles={["Student"]}><MyPaymentHistory /></ProtectedByRole>
             },
 
 
