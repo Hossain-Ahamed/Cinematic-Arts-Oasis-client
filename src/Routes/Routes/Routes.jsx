@@ -30,6 +30,7 @@ import InstructorDetailView from "../../Pages/Main_Layout_Pages/Instructor/Instr
 import ManageClass from "../../Pages/Dashboard/Common/ManageClass/ManageClass";
 import AdminInstructorClassDetailView from "../../Pages/Dashboard/Common/AdminInstructorClassDetailView/AdminInstructorClassDetailView";
 import Cart from "../../Pages/Dashboard/Student/Cart/Cart";
+import Payment from "../../Pages/Dashboard/Student/Payment/Payment";
 
 
 export const router = createBrowserRouter([
@@ -121,6 +122,14 @@ export const router = createBrowserRouter([
             {
                 path: "carts",
                 element: <ProtectedByRole allowedRoles={["Student"]}><Cart /></ProtectedByRole>
+            },
+            {
+                path: "/dashboard/payment/:cartID",
+                element: <ProtectedByRole allowedRoles={["Student"]}><Payment /></ProtectedByRole>
+            },
+            {
+                path: "classes",
+                element: <ProtectedByRole allowedRoles={["Student"]}><StudentHome /></ProtectedByRole>
             },
 
 

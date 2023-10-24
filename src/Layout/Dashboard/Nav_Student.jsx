@@ -32,7 +32,7 @@ const Nav_Student = () => {
             </NavLink>
         </li>
 
-        <li>
+        {/* <li>
             <NavLink to="my-payment-history" className="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
                 <svg className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                     <path d="M18 0H6a2 2 0 0 0-2 2h14v12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Z" />
@@ -40,7 +40,7 @@ const Nav_Student = () => {
                 </svg>
                 <span className="ml-3">Payment History</span>
             </NavLink>
-        </li>
+        </li> */}
 
 
     </ul>

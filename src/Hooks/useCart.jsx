@@ -118,7 +118,7 @@ const useCart = () => {
     }
 
 
-    return { cart, items: cart?.items, cartRefetch, cartError, addtoCart, deleteCartItem }
+    return { cart, items: cart?.items, cartLoading, cartRefetch, cartError, addtoCart, deleteCartItem }
 
 };
 

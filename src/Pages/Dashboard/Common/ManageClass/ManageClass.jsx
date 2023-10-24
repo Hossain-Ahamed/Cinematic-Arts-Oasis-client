@@ -73,7 +73,7 @@ const ManageClass = () => {
     }
 
     return (
-        <>
+        <section className='w-screen md:w-full min-h-screen'>
             <ScrollToTop />
             <SetTitle title="All classes" />
 
@@ -111,93 +111,96 @@ const ManageClass = () => {
 
 
             </div >
+            <div className="overflow-x-auto mt-5">
+                <table className="min-w-full text-sm text-left">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
 
-            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-
-                        <th scope="col" className="px-6 py-3">
-                            Class Info
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            Instructor Info
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            Available Seat
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            Price
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            Status
-                        </th>
-
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {
-                        dataList && Array.isArray(dataList) &&
-                        dataList.map((data) => <tr key={data?._id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                            <th onClick={() => navigate(`${data?._id}`)} scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white hover:cursor-pointer">
-                                <img className="w-10 h-10 rounded-full" src={data?.photoURL} alt={data?.name} />
-                                <div className="pl-3">
-                                    <div className="text-base font-semibold">{data?.className}</div>
-                                    <div className="font-normal text-xs text-gray-500">#{data?._id.slice(-6)}</div>
-                                </div>
+                            <th scope="col" className="px-6 py-3">
+                                Class Info
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Instructor Info
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Available Seat
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Price
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Status
                             </th>
 
-
-                            <td className="px-6 py-4">
-                                <div className="text-base font-semibold">{data?.name}</div>
-                                <div className="font-normal text-xs text-gray-500">{data?.email}</div>
-                            </td>
-
-                            <td className="px-6 py-4">
-                                {data?.availableSeats}
-                            </td>
-                            <td className="px-6 py-4">
-                                {data?.CoursePrice}
-                            </td>
-                            <td className="px-6 py-4">
-                                {
-                                    role === "Admin"  ?
-                                        <div>
-
-                                            <select
-                                                defaultValue={data?.status}
-
-                                                onChange={(e) => changeStatus(e.target.value, data?._id)}
-
-                                                className="block w-full py-2 px-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            >
-
-                                                <option disabled>Select an option</option>
-                                                <option value="Approved">Approved</option>
-                                                <option value="Pending">Pending</option>
-                                                <option value="Denied">Denied</option>
-
-                                            </select>
-
-                                        </div>
-                                        :
-
-                                        <div className="flex items-center">
-                                            <div className={`h-2.5 w-2.5 rounded-full ${data?.status === "Denied" ? "bg-red-500 text-red-500" : data?.status === "Approved" ? "bg-green-500 text-green-500" : "bg-yellow-500 text-yellow-500"} mr-2`}></div>
-                                            <span className={` ${data?.status === "Denied" ? " text-red-500" : data?.status === "Approved" ? " text-green-500" : " text-yellow-500"}`}>{data?.status}</span>
-                                        </div>
-                                }
-                            </td>
-
                         </tr>
-                        )
-                    }
+                    </thead>
+
+                    <tbody>
+                        {
+                            dataList && Array.isArray(dataList) &&
+                            dataList.map((data) => <tr key={data?._id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+
+                                <th onClick={() => navigate(`${data?._id}`)} scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white hover:cursor-pointer">
+                                    <img className="w-10 h-10 rounded-full" src={data?.photoURL} alt={data?.name} />
+                                    <div className="pl-3">
+                                        <div className="text-base font-semibold">{data?.className}</div>
+                                        <div className="font-normal text-xs text-gray-500">#{data?._id.slice(-6)}</div>
+                                    </div>
+                                </th>
 
 
-                </tbody>
-            </table>
-        </>
+                                <td className="px-6 py-4">
+                                    <div className="text-base font-semibold">{data?.name}</div>
+                                    <div className="font-normal text-xs text-gray-500">{data?.email}</div>
+                                </td>
+
+                                <td className="px-6 py-4">
+                                    {data?.availableSeats}
+                                </td>
+                                <td className="px-6 py-4">
+                                    {data?.CoursePrice}
+                                </td>
+                                <td className="px-6 py-4">
+                                    {
+                                        role === "Admin" ?
+                                            <div>
+
+                                                <select
+                                                    defaultValue={data?.status}
+
+                                                    onChange={(e) => changeStatus(e.target.value, data?._id)}
+
+                                                    className="block w-full py-2 px-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                >
+
+                                                    <option disabled>Select an option</option>
+                                                    <option value="Approved">Approved</option>
+                                                    <option value="Pending">Pending</option>
+                                                    <option value="Denied">Denied</option>
+
+                                                </select>
+
+                                            </div>
+                                            :
+
+                                            <div className="flex items-center">
+                                                <div className={`h-2.5 w-2.5 rounded-full ${data?.status === "Denied" ? "bg-red-500 text-red-500" : data?.status === "Approved" ? "bg-green-500 text-green-500" : "bg-yellow-500 text-yellow-500"} mr-2`}></div>
+                                                <span className={` ${data?.status === "Denied" ? " text-red-500" : data?.status === "Approved" ? " text-green-500" : " text-yellow-500"}`}>{data?.status}</span>
+                                            </div>
+                                    }
+                                </td>
+
+                            </tr>
+                            )
+                        }
+
+
+                    </tbody>
+                </table>
+
+            </div>
+        </section>
+
     );
 };
 
