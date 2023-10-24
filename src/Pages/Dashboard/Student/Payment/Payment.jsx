@@ -1,6 +1,5 @@
 import React from 'react';
 import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
-import { Helmet } from 'react-helmet-async';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import CheckOutForm from './CheckOutForm';
@@ -36,18 +35,19 @@ const Payment = () => {
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
     const { data: { Details, price } = {}, error: detailError, isLoading: detailLoading, refetch: detailrefetch } = useQuery({
-        queryKey: ['detailCartData', cartID],
+        queryKey: ['detailCartData', cartID,profile,cart],
         enabled: (!cartLoading && !cartError && !profileLoading && !profileError),
         queryFn: async () => {
             const res = await axiosSecure.get(`/cart-data/detail/individucal/${cart?.email}/${cartID}`);
             // console.log(res.data)
             return res.data;
-        }
+        },
+        cacheTime:0
     })
 
 
     if (detailError) {
-
+        console.error(detailError)
         Swal.fire({
             position: 'center',
             icon: 'error',
@@ -65,7 +65,7 @@ const Payment = () => {
 
     return (
         <section className='min-h-screen py-10'>
-            <SetTitle title="Payment"/>
+            <SetTitle title="Payment" />
             <SectionTitle h1="Payment Form" />
 
             <div className=' py-7 px-4  max-w-xl mx-auto bg-white text-black dark:bg-white dark:text-black'>

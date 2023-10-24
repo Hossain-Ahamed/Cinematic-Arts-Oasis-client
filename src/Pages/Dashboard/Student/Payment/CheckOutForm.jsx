@@ -5,10 +5,7 @@ import Field from './Field';
 import CardField from './CardField';
 import SuccessfullPage from './SuccessfullPage';
 import PaymentError from './PaymentError';
-
-import toast from 'react-hot-toast';
 import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
-import useAuthProvider from '../../../../Hooks/useAuthProvider';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 

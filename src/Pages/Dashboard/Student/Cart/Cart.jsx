@@ -7,23 +7,25 @@ import LoadingPage from '../../../LoadingPage/LoadingPage/LoadingPage';
 import useCart from '../../../../Hooks/useCart';
 import SetTitle from '../../../Shared/SetTtitle/SetTitle';
 import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Cart = () => {
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
     const { profileLoading, profile } = useProfile();
     const enabled = !profileLoading;
-    const { deleteCartItem, cart } = useCart()
+    const { deleteCartItem, cart } = useCart();
+    const location = useLocation();
 
     const { refetch, data: { _id, items, email } = {}, isLoading, error } = useQuery({
-        queryKey: ['detailcart', cart],
+        queryKey: ['detailcart', cart,location],
         enabled: enabled,
         queryFn: async () => {
             const res = await axiosSecure.get(`/get-detail-cart/${profile?.email}`);
             // console.log(res.data)
             return res?.data;
         },
+        cacheTime:0
     });
 
 

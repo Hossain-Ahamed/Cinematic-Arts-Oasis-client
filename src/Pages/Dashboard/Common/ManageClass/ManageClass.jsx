@@ -162,7 +162,7 @@ const ManageClass = () => {
                                 </td>
                                 <td className="px-6 py-4">
                                     {
-                                        role === "Admin" ?
+                                        role === "Admin" && data?.status !==  "Approved" ? 
                                             <div>
 
                                                 <select
