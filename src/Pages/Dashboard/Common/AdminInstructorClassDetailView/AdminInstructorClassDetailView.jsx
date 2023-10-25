@@ -22,7 +22,7 @@ const AdminInstructorClassDetailView = () => {
         enabled: enabled,
         queryFn: async () => {
             const res = await axiosSecure.get(`/manage-classes/class-list/${classID}`);
-            // console.log(res.data)
+            console.log(res.data)
             return res?.data;
         },
     });

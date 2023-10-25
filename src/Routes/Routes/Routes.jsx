@@ -33,6 +33,8 @@ import Cart from "../../Pages/Dashboard/Student/Cart/Cart";
 import Payment from "../../Pages/Dashboard/Student/Payment/Payment";
 import Followings from "../../Pages/Dashboard/Student/Followings/Followings";
 import MyPaymentHistory from "../../Pages/Dashboard/Student/MyPaymentHistory/MyPaymentHistory";
+import StudentAllClass from "../../Pages/Dashboard/Student/StudentClass/StudentAllClass/StudentAllClass";
+import StudentClassDetail from "../../Pages/Dashboard/Student/StudentClass/StudentClassDetail/StudentClassDetail";
 
 
 export const router = createBrowserRouter([
@@ -131,7 +133,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: "classes",
-                element: <ProtectedByRole allowedRoles={["Student"]}><StudentHome /></ProtectedByRole>
+                element: <ProtectedByRole allowedRoles={["Student"]}><StudentAllClass /></ProtectedByRole>
+            },
+            {
+                path: "classes/:classID",
+                element: <ProtectedByRole allowedRoles={["Student"]}><StudentClassDetail /></ProtectedByRole>
             },
             {
                 path: "following",
