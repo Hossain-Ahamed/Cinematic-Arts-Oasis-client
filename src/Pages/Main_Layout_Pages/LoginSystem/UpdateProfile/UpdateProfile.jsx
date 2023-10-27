@@ -11,6 +11,7 @@ import LoadingPage from '../../../LoadingPage/LoadingPage/LoadingPage';
 import axios from 'axios';
 import LoadingPageWIthIconOnly from '../../../LoadingPage/LoadingPageWIthIconOnly/LoadingPageWIthIconOnly';
 import { Navigate, useNavigate } from 'react-router-dom';
+import Error from '../../../Shared/Error/Error';
 
 const UpdateProfile = () => {
 
@@ -109,8 +110,7 @@ const UpdateProfile = () => {
     }
     if (error) {
 
-        // todo : new error page 
-        return <>error</>
+        return <Error error={error} />
     }
     return (
         <>
@@ -211,7 +211,7 @@ const UpdateProfile = () => {
                             {...register("gender", {
                                 required: "*Gender required",
                             })}
-                            onChange={(e)=>setValue('gender',e.target.value)}
+                            onChange={(e) => setValue('gender', e.target.value)}
 
                             className="block w-full py-2 px-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         >
@@ -232,7 +232,7 @@ const UpdateProfile = () => {
                     <textarea  {...register("address", {
                         required: "*Address required",
                     })}
-                    defaultValue={profile?.address}
+                        defaultValue={profile?.address}
                         id="address" className="resize-none h-16 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Silicon Valley, USA" />
                     {errors.Address && (
                         <p className="p-1 text-xs text-red-600">{errors.Address.message}</p>

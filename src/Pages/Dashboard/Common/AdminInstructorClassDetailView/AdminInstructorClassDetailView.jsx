@@ -9,6 +9,7 @@ import SetTitle from '../../../Shared/SetTtitle/SetTitle';
 import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
 import CourseData_AdminInstructorClassDetailView from './CourseData_AdminInstructorClassDetailView';
 import StudentCard_AdminInstructorClassDetailView from './StudentCard_AdminInstructorClassDetailView';
+import Error from '../../../Shared/Error/Error';
 
 const AdminInstructorClassDetailView = () => {
     const axiosSecure = useAxiosSecure();
@@ -58,13 +59,7 @@ const AdminInstructorClassDetailView = () => {
 
     if (error) {
 
-        Swal.fire({
-            icon: 'error',
-            title: `${error?.code} ${error?.response?.status} `,
-            text: `${error?.response?.data?.message}`,
-            showConfirmButton: false
-        })
-        return navigate('/dashboard/my-classes')
+        return <Error error={error} />
     }
     if (isLoading) {
         return <LoadingPage />

@@ -11,6 +11,7 @@ import ClassCard from '../../Classes/ClassCard';
 import useProfile from '../../../../Hooks/useProfile';
 import useCart from '../../../../Hooks/useCart';
 import ScrollToTop from '../../../../components/ScrollToTop/ScrollToTop';
+import Error from '../../../Shared/Error/Error';
 
 const InstructorDetailView = () => {
     const { insID } = useParams();
@@ -34,13 +35,7 @@ const InstructorDetailView = () => {
 
     if (error) {
 
-        console.error(error)
-        Swal.fire(
-            `${error?.code}`,
-            `${error?.response?.data?.message}`,
-            'warning'
-        )
-        return <>error in classes</>
+        return <Error error={error} />
     }
     if (isLoading) {
         return <LoadingPage />

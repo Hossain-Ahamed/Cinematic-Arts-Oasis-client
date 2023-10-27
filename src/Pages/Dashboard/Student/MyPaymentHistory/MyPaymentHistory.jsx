@@ -6,6 +6,7 @@ import LoadingPage from '../../../LoadingPage/LoadingPage/LoadingPage';
 import SetTitle from '../../../Shared/SetTtitle/SetTitle';
 import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
 import { useQuery } from 'react-query';
+import Error from '../../../Shared/Error/Error';
 
 const MyPaymentHistory = () => {
     const axiosSecure = useAxiosSecure();
@@ -27,13 +28,7 @@ const MyPaymentHistory = () => {
 
     if (error) {
 
-        Swal.fire({
-            icon: 'error',
-            title: `${error?.code} ${error?.response?.status} `,
-            text: `${error?.response?.data?.message}`,
-            showConfirmButton: false
-        })
-        return <>Error!!!</>
+        return <Error error={error} />
     }
     if (isLoading) {
         return <LoadingPage />

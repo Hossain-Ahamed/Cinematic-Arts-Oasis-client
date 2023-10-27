@@ -9,6 +9,7 @@ import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import Instructorcard from './Instructorcard';
 import LoadingPage from '../../LoadingPage/LoadingPage/LoadingPage';
 import ScrollToTop from '../../../components/ScrollToTop/ScrollToTop';
+import Error from '../../Shared/Error/Error';
 
 const Instructors = () => {
     const { role, profile, profileRefetch } = useProfile();
@@ -66,7 +67,7 @@ const Instructors = () => {
     }
 
     if (error) {
-        return <>error in classes</>
+        return <Error error={error} />
     }
     if (isLoading) {
         return <LoadingPage />

@@ -35,6 +35,7 @@ import Followings from "../../Pages/Dashboard/Student/Followings/Followings";
 import MyPaymentHistory from "../../Pages/Dashboard/Student/MyPaymentHistory/MyPaymentHistory";
 import StudentAllClass from "../../Pages/Dashboard/Student/StudentClass/StudentAllClass/StudentAllClass";
 import StudentClassDetail from "../../Pages/Dashboard/Student/StudentClass/StudentClassDetail/StudentClassDetail";
+import UserDetail from "../../Pages/Dashboard/Admin/UserDetail/UserDetail";
 
 
 export const router = createBrowserRouter([
@@ -103,6 +104,10 @@ export const router = createBrowserRouter([
             {
                 path: "all-users",
                 element: <ProtectedByRole allowedRoles={["Admin"]}><AllUsers /></ProtectedByRole>
+            },
+            {
+                path: "all-users/:userID",
+                element: <ProtectedByRole allowedRoles={["Admin"]}><UserDetail /></ProtectedByRole>
             },
             {
                 path: "all-users/update-user-profile",

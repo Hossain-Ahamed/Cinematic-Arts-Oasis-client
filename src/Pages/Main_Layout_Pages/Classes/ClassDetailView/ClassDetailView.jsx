@@ -11,6 +11,7 @@ import useProfile from '../../../../Hooks/useProfile';
 import InstructorDetailbar from '../../../Shared/InstructorDetailBar/InstructorDetailBar';
 import ScrollToTop from '../../../../components/ScrollToTop/ScrollToTop';
 import useCart from '../../../../Hooks/useCart';
+import Error from '../../../Shared/Error/Error';
 
 const ClassDetailView = () => {
 
@@ -32,13 +33,7 @@ const ClassDetailView = () => {
 
     if (error) {
 
-        console.error(error)
-        Swal.fire(
-            `${error?.code}`,
-            `${error?.response?.data?.message}`,
-            'warning'
-        )
-        return <>error in classes</>
+        return <Error error={error} />
     }
     if (isLoading) {
         return <LoadingPage />

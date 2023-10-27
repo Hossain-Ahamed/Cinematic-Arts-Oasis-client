@@ -8,6 +8,8 @@ import useCart from '../../../../Hooks/useCart';
 import SetTitle from '../../../Shared/SetTtitle/SetTitle';
 import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
 import { useLocation, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import Error from '../../../Shared/Error/Error';
 
 const Cart = () => {
     const axiosSecure = useAxiosSecure();
@@ -18,28 +20,34 @@ const Cart = () => {
     const location = useLocation();
 
     const { refetch, data: { _id, items, email } = {}, isLoading, error } = useQuery({
-        queryKey: ['detailcart', cart,location],
+        queryKey: ['detailcart', cart, location],
         enabled: enabled,
         queryFn: async () => {
             const res = await axiosSecure.get(`/get-detail-cart/${profile?.email}`);
             // console.log(res.data)
+
+
+            toast('Purchaseable selected course!',
+                {
+                
+                    style: {
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#fff',
+                    },
+                    position:"bottom-right",
+                    duration : '1000'
+                }
+            );
             return res?.data;
         },
-        cacheTime:0
+        cacheTime: 0
     });
 
 
 
     if (error) {
-        console.error(error)
-
-        Swal.fire({
-            icon: 'error',
-            title: `${error?.code} ${error?.response?.status} `,
-            text: `${error?.response?.data?.message}`,
-            showConfirmButton: false
-        })
-        return <>error in classes</>
+        return <Error error={error} />
     }
     if (isLoading) {
         return <LoadingPage />

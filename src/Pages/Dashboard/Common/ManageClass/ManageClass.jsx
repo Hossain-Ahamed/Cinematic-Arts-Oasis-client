@@ -8,6 +8,7 @@ import ScrollToTop from '../../../../components/ScrollToTop/ScrollToTop';
 import SetTitle from '../../../Shared/SetTtitle/SetTitle';
 import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
+import Error from '../../../Shared/Error/Error';
 
 const ManageClass = () => {
 
@@ -65,8 +66,7 @@ const ManageClass = () => {
 
 
     if (error) {
-        console.error(error)
-        return <>error in classes</>
+        return <Error error={error} />
     }
     if (isLoading) {
         return <LoadingPage />

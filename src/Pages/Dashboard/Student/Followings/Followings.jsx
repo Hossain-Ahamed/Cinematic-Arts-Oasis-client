@@ -8,6 +8,7 @@ import SetTitle from '../../../Shared/SetTtitle/SetTitle';
 import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
 import Instructorcard from '../../../Main_Layout_Pages/Instructor/Instructorcard';
 import Swal from 'sweetalert2';
+import Error from '../../../Shared/Error/Error';
 
 const Followings = () => {
 
@@ -59,8 +60,7 @@ const Followings = () => {
     }
 
     if (error) {
-        console.error(error)
-        return <>error in classes</>
+        return <Error error={error} />
     }
     // if (isLoading) {
     //     return <LoadingPage />
