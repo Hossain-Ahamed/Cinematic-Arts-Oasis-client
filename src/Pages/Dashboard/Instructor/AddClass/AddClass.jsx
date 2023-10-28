@@ -79,7 +79,7 @@ const AddClass = () => {
                     `Class Created`,
                     'success'
                 )
-                navigate('/')
+                navigate('/dashboard/mu-classes')
 
             }).catch(e => {
                 // console.log(e);

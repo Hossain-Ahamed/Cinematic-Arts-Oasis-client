@@ -45,21 +45,24 @@ const EditClass = () => {
 
     const { register, formState: { errors }, handleSubmit, setValue } = useForm({ mode: "onSubmit" });
 
-    const submission = async data => {
+    const submission = async data_ => {
+        if(data?.status !== "Pending"){
+            return toast.error("You can't edit while it is not pending")
+        }
 
         //  setLoadOnSave(true)
 
         const Uploaddata = {
-            className: data?.className,
-            videoURL: data?.videoURL,
-            availableSeats: parseInt(data?.availableSeats),
-            CoursePrice: parseFloat(parseFloat(data?.CoursePrice).toFixed(2)),
-            description: data?.description
+            className: data_?.className,
+            videoURL: data_?.videoURL,
+            availableSeats: parseInt(data_?.availableSeats),
+            CoursePrice: parseFloat(parseFloat(data_?.CoursePrice).toFixed(2)),
+            description: data_?.description
         }
 
-        // console.log(Uploaddata)
+        // console.log(Uploaddata_)
 
-        if (data?.img.length !== 0) {
+        if (data_?.img.length !== 0) {
             const formData = new FormData();
             formData.append("image", data.img[0]);
             await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_ImgBBAPI}`, formData)
@@ -80,7 +83,7 @@ const EditClass = () => {
     };
 
     const uploadToServer = data => {
-        console.log(data)
+        // console.log(data)
         axiosSecure.patch(`/my-classes/${classID}/edit`, data)
             .then(result => {
 
