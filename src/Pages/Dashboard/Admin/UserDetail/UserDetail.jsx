@@ -12,6 +12,7 @@ import UserDetailAllClasses from './UserDetailAllClasses';
 import UserDetail_Profile from './UserDetail_Profile';
 import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
 import SetTitle from '../../../Shared/SetTtitle/SetTitle';
+import ScrollToTop from '../../../../components/ScrollToTop/ScrollToTop';
 
 const UserDetail = () => {
     const { userID } = useParams();
@@ -38,6 +39,7 @@ const UserDetail = () => {
     }
     return (
         <>
+        <ScrollToTop/>
         <SectionTitle h1="User Profile"/>
         <SetTitle title="User Profile"/>
 

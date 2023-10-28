@@ -4,6 +4,7 @@ import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
 import { useQuery } from 'react-query';
 import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
 import SetTitle from '../../../Shared/SetTtitle/SetTitle';
+import ScrollToTop from '../../../../components/ScrollToTop/ScrollToTop';
 
 const Followers = () => {
     const { profile } = useProfile();
@@ -21,6 +22,7 @@ const Followers = () => {
 
     return (
         <>
+        <ScrollToTop/>
         <SectionTitle h1="My Followers"/>
         <SetTitle title="My Followers"/>
             <div className=' flex justify-center items-center flex-wrap gap-5 pb-20'>
