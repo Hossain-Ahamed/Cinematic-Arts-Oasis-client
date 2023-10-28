@@ -3,7 +3,7 @@ import LoadingPage from '../../../LoadingPage/LoadingPage/LoadingPage';
 import SetTitle from '../../../Shared/SetTtitle/SetTitle';
 import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
 import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useProfile from '../../../../Hooks/useProfile';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
@@ -11,8 +11,10 @@ import axios from 'axios';
 import { validateURL } from '../../../../assets/utilityScript';
 import toast from 'react-hot-toast';
 import Error from '../../../Shared/Error/Error';
+import { useQuery } from 'react-query';
 
-const AddClass = () => {
+const EditClass = () => {
+    const { classID } = useParams();
     const { profile, profileLoading, profileError } = useProfile();
     const navigate = useNavigate();
 
@@ -22,6 +24,17 @@ const AddClass = () => {
 
     // upload prgress 
     const [loadOnSave, setLoadOnSave] = useState(false);
+
+    const { refetch, data, isLoading, error } = useQuery({
+        queryKey: ['classdetaildatatoedit', classID],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/my-classes/${classID}/edit`);
+            // console.log(res.data);
+            setSelectedImage(res.data?.photoURL)
+            return res?.data;
+        },
+    });
+
 
     const handleImageChange = (e) => {
         if (e.target.files[0]) {
@@ -33,18 +46,15 @@ const AddClass = () => {
     const { register, formState: { errors }, handleSubmit, setValue } = useForm({ mode: "onSubmit" });
 
     const submission = async data => {
-       
+
         //  setLoadOnSave(true)
 
         const Uploaddata = {
-            email : profile?.email,
-            name: profile?.name,
-            UID : profile?.firebase_UID,
-            className : data?.className,
-            videoURL : data?.videoURL,
+            className: data?.className,
+            videoURL: data?.videoURL,
             availableSeats: parseInt(data?.availableSeats),
-            CoursePrice : parseFloat(parseFloat(data?.CoursePrice).toFixed(2)),
-            description : data?.description
+            CoursePrice: parseFloat(parseFloat(data?.CoursePrice).toFixed(2)),
+            description: data?.description
         }
 
         // console.log(Uploaddata)
@@ -64,14 +74,14 @@ const AddClass = () => {
 
                 })
         } else {
-            toast.error("Image is Required")
+            uploadToServer(Uploaddata)
         }
         setLoadOnSave(false);
     };
 
     const uploadToServer = data => {
-
-        axiosSecure.post(`/instructor/add-class`, data)
+        console.log(data)
+        axiosSecure.patch(`/my-classes/${classID}/edit`, data)
             .then(result => {
 
                 Swal.fire(
@@ -79,7 +89,7 @@ const AddClass = () => {
                     `Class Created`,
                     'success'
                 )
-                navigate('/')
+                navigate(`/dashboard/my-classes/${classID}`)
 
             }).catch(e => {
                 // console.log(e);
@@ -91,20 +101,21 @@ const AddClass = () => {
                 })
             })
     }
-    if (profileLoading) {
+    if (profileLoading || isLoading) {
         return <LoadingPage />
     }
-    if (profileError) {
+    if (profileError || error) {
 
-        return <Error error={profileError}/>
+        return <Error error={profileError ? profileError : error && error} />
     }
     return (
         <>
             {
                 loadOnSave && <LoadingPage />
             }
-            <SetTitle title="Add Class | Cinematic" />
-            <SectionTitle h1="Add a Class" />
+         
+            <SetTitle title="Edit Class | Cinematic" />
+            <SectionTitle h1="Edit a Class" />
             <form className='max-w-5xl mx-auto min-h-screen select-none' onSubmit={handleSubmit(submission)}>
                 {/* image  */}
 
@@ -136,7 +147,7 @@ const AddClass = () => {
                     {/*  class name  */}
                     <div className='mb-2'>
                         <label htmlFor="classsName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Class Name</label>
-                        <input type="text"   {...register("className", {
+                        <input type="text"  defaultValue={data?.className} {...register("className", {
                             required: "*Class Name required",
                         })}
 
@@ -149,7 +160,7 @@ const AddClass = () => {
                     {/* url video   */}
                     <div>
                         <label htmlFor="videoURL" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Video Link</label>
-                        <input type="text"  {...register("videoURL", {
+                        <input type="text"  defaultValue={data?.videoURL}  {...register("videoURL", {
                             validate: (value) => value ? validateURL(value) || "Not a url" : true
                         })}
 
@@ -163,7 +174,7 @@ const AddClass = () => {
                     {/* Available seats  */}
                     <div>
                         <label htmlFor="availableSeats" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Availabale Seat</label>
-                        <input type="text"  {...register("availableSeats", {
+                        <input type="text"  defaultValue={data?.availableSeats ? parseInt(data?.availableSeats) : 0} {...register("availableSeats", {
                             required: "*available Seats required",
                             validate: (value) => !isNaN(Number(value)) || "Please enter a number",
                         })}
@@ -177,11 +188,11 @@ const AddClass = () => {
                     {/* Price   */}
                     <div>
                         <label htmlFor="Institute-name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Course price </label>
-                        <input type="text"  {...register("CoursePrice", {
+                        <input type="text"   defaultValue={data?.CoursePrice} {...register("CoursePrice", {
                             required: "*Course Price  required",
                             validate: (value) => !isNaN(Number(value)) || "Please enter a number",
                         })}
-                           
+
                             id="CoursePrice" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="500" />
                         {errors.CoursePrice && (
                             <p className="p-1 text-xs text-red-600">{errors.CoursePrice.message}</p>
@@ -212,7 +223,7 @@ const AddClass = () => {
                 </div>
                 <div className="mb-6">
                     <label htmlFor="Description" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                    <textarea  {...register("description", {
+                    <textarea   defaultValue={data?.description} {...register("description", {
                         required: "*Description required",
                     })}
 
@@ -222,7 +233,7 @@ const AddClass = () => {
                     )}
                 </div>
 
-              
+
                 <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">save</button>
             </form>
 
@@ -230,4 +241,4 @@ const AddClass = () => {
     );
 };
 
-export default AddClass;
+export default EditClass;

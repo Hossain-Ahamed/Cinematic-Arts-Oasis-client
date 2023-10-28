@@ -36,6 +36,7 @@ import MyPaymentHistory from "../../Pages/Dashboard/Student/MyPaymentHistory/MyP
 import StudentAllClass from "../../Pages/Dashboard/Student/StudentClass/StudentAllClass/StudentAllClass";
 import StudentClassDetail from "../../Pages/Dashboard/Student/StudentClass/StudentClassDetail/StudentClassDetail";
 import UserDetail from "../../Pages/Dashboard/Admin/UserDetail/UserDetail";
+import EditClass from "../../Pages/Dashboard/Instructor/EditClass/EditClass";
 
 
 export const router = createBrowserRouter([
@@ -171,6 +172,10 @@ export const router = createBrowserRouter([
             {
                 path: "my-classes/:classID",
                 element: <ProtectedByRole allowedRoles={["Instructor"]}><AdminInstructorClassDetailView /></ProtectedByRole>
+            },
+            {
+                path: "my-classes/:classID/edit",
+                element: <ProtectedByRole allowedRoles={["Instructor"]}><EditClass /></ProtectedByRole>
             },
             {
                 path: "followers",

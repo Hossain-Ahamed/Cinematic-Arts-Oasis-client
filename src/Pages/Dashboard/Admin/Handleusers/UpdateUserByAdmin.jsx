@@ -11,6 +11,7 @@ import LoadingPage from '../../../LoadingPage/LoadingPage/LoadingPage';
 import axios from 'axios';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import useGetAllusers from '../../../../Hooks/useGetAllusers';
+import Error from '../../../Shared/Error/Error';
 
 
 const UpdateUserByAdmin = () => {
@@ -117,8 +118,7 @@ const UpdateUserByAdmin = () => {
     }
     if (error) {
 
-        // todo : new error page 
-        return <>error</>
+        return <Error error={error}/>
     }
 
     return (

@@ -14,7 +14,7 @@ import Error from '../../../Shared/Error/Error';
 const AdminInstructorClassDetailView = () => {
     const axiosSecure = useAxiosSecure();
     const { classID } = useParams();
-    const { profileLoading, profile, role } = useProfile();
+    const { profileLoading, role } = useProfile();
     const enabled = !profileLoading;
     const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ const AdminInstructorClassDetailView = () => {
         enabled: enabled,
         queryFn: async () => {
             const res = await axiosSecure.get(`/manage-classes/class-list/${classID}`);
-            console.log(res.data)
+            // console.log(res.data)
             return res?.data;
         },
     });
@@ -68,7 +68,7 @@ const AdminInstructorClassDetailView = () => {
         <section className='w-screen md:w-full'>
             <SetTitle title={`${classData?.className || "Course Detail"}`} />
             <SectionTitle h1={`${classData?.className || "Course Detail"}`} />
-            <CourseData_AdminInstructorClassDetailView courseData={classData} lengthOFStudents={students && Array.isArray(students) && students.length || 0} />
+            <CourseData_AdminInstructorClassDetailView courseData={classData} lengthOFStudents={students && Array.isArray(students) && students.length || 0}  role={role}/>
 
 
 

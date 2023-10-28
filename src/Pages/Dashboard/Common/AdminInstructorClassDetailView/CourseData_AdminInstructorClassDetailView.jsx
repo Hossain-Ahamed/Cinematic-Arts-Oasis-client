@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const CourseData_AdminInstructorClassDetailView = ({ courseData, lengthOFStudents }) => {
+const CourseData_AdminInstructorClassDetailView = ({ courseData, lengthOFStudents, role }) => {
     return (
         <div className=" max-w-screen md:max-w-full flex flex-col  bg-white border border-gray-200 rounded-none md:rounded-lg shadow md:flex-row  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
             <img className="object-cover  w-full rounded-t-lg h-72 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src={courseData?.photoURL} alt={courseData?.name} />
@@ -39,9 +39,19 @@ const CourseData_AdminInstructorClassDetailView = ({ courseData, lengthOFStudent
                     {courseData?.status}
                 </span>
                 </p>
+                {
+                    role === "Instructor" &&
 
+                    <Link to={'edit'} className="mt-3 flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <span>
+                            Update
+                        </span>
+                        <svg className="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </Link>
+                }
             </div>
-
 
 
         </div>
