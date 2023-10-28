@@ -25,7 +25,7 @@ const UserDetail = () => {
             // console.log(res.data)
             return res?.data;
         },
-        cacheTime: 0
+
     });
 
 
