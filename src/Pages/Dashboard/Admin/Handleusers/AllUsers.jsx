@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import useGetAllusers from '../../../../Hooks/useGetAllusers';
 import ScrollToTop from '../../../../components/ScrollToTop/ScrollToTop';
 import SetTitle from '../../../Shared/SetTtitle/SetTitle';
+import LoadingPage from '../../../LoadingPage/LoadingPage/LoadingPage';
 
 const AllUsers = () => {
     const navigate = useNavigate();
@@ -25,6 +26,9 @@ const AllUsers = () => {
     if (queryError) {
         console.error(queryError)
         return <ErrorIcon />
+    }
+    if(queryLoading){
+        return <LoadingPage/>
     }
 
     return (

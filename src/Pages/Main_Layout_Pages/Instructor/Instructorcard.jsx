@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FcLike } from 'react-icons/fc';
 import { PiHeartStraight } from 'react-icons/pi';
 const Instructorcard = ({ data, role, handleFollow, profile }) => {
-
+    const location = useLocation();
     return (
         <>
             <div className="  w-80 h-48 text-sm text-gray-500  bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
@@ -32,17 +32,22 @@ const Instructorcard = ({ data, role, handleFollow, profile }) => {
                     <p className="text-base font-semibold leading-none text-gray-900 dark:text-white">
                         {data?.name}
                     </p>
-                    <p className="mb-3 text-sm font-normal">
+                    <p className=" text-sm font-normal">
                         <a href="#" className="hover:underline">{data?.email}</a>
                     </p>
                     <p className="mb-4 text-sm">{data?.phone}</p>
                     <ul className="flex text-sm justify-between ">
-                        <li className="mr-2">
-                            <a href="#" className="hover:underline">
-                                <span>Instructor for: </span>
-                                <span className="font-semibold text-gray-900 dark:text-white">{data?.classInfo && Array.isArray(data?.classInfo) ? data?.classInfo.length : 0}</span> class
-                            </a>
-                        </li>
+                        {
+                            ['/dashboard/all-users/', '/dashboard/following'].some(path => location.pathname.includes(path)) || <>
+                                <li className="mr-2">
+                                    <a href="#" className="hover:underline">
+                                        <span>Instructor for: </span>
+                                        <span className="font-semibold text-gray-900 dark:text-white">{data?.classInfo && Array.isArray(data?.classInfo) ? data?.classInfo.length : 0}</span> class
+                                    </a>
+                                </li>
+                            </>
+                        }
+
                         <li>
                             <Link to={`/instructors/${data?._id}`} className="hover:underline hover:text-blue-600 flex justify-around items-center">
                                 <span className="font-semibold text-blue-900 dark:text-white">See Detail</span>

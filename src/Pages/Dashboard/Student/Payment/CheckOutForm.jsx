@@ -123,7 +123,7 @@ const CheckOutForm = ({ price, classDetail, profile }) => {
                     InstructorEmail: classDetail?.email,
                     InstructorUID: classDetail?.UID,
 
-                    clssName: classDetail?.className,
+                    className: classDetail?.className,
                     class_ID: classDetail?._id,
 
 

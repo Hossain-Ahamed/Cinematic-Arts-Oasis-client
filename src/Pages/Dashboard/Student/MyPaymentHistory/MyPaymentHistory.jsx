@@ -45,7 +45,7 @@ const MyPaymentHistory = () => {
                         <div key={_idx} className="  w-fit max-w-[315px] md:max-w-[600px] h-fit text-sm text-gray-500  bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-300 dark:bg-gray-800 dark:border-gray-600">
 
                             <div className="flex flex-col items-start justify-between mb-2 pt-4 px-3">
-                                <h5 className="mb-0 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{Student?.clssName}</h5>
+                                <h5 className="mb-0 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{Student?.className}</h5>
                                 <p className="mb-3 text-sm font-semibold text-gray-500 dark:text-gray-400 leading-none cursor-pointer ">#{Student?.class_ID.slice(-6)} </p>
                                 <p className="mb-2 font-medium text-[16px] leading-none text-gray-700 dark:text-gray-200 ">Instructor: <span className='text-sm font-light '>{Student?.InstructorName}</span> </p>
 

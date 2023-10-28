@@ -75,7 +75,7 @@ const StudentAllClass = () => {
                             <Link to={data?.classData && Array.isArray(data?.classData) && data?.classData[0]?._id} >
                                 <div className="px-5 pb-5">
 
-                                    <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white" aria-label='course name' title='course name'>{data?.clssName}</h5>
+                                    <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white" aria-label='course name' title='course name'>{data?.className}</h5>
                                     <div className="flex flex-col justify-center items-start mt-2.5 mb-5">
                                         <span aria-label='isntructor name' title='instructor name' className=' text-sm  '>By <span className='text-gray-600 dark:text-gray-400 hover:cursor-pointer font-semibold'>{data?.InstructorName}</span></span>
 
